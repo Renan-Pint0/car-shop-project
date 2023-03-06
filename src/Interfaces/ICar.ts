@@ -1,10 +1,6 @@
-interface ICar {
-  id?: string,
-  model: string,
-  year: number,
-  color: string,
-  status?: boolean,
-  buyValue: number,
+import IAutomobile from './IVehicle';
+
+interface ICar extends IAutomobile {
   doorsQty: number,
   seatsQty: number,
 }
