@@ -50,4 +50,25 @@ export default class MotorcycleController {
       return this.res.status(404).json({ message: 'Motorcycle not found' });
     }
   }
+  public async update() {
+    try {
+      const { id } = this.req.params;
+      const motoDetails: IMotorcycle = {
+        model: this.req.body.model,
+        year: this.req.body.year,
+        color: this.req.body.color,
+        status: this.req.body.status,
+        buyValue: this.req.body.buyValue,
+        category: this.req.body.category,
+        engineCapacity: this.req.body.engineCapacity,
+      };
+      const motoUpdate = await this.service.update(id, motoDetails);
+      if (!motoUpdate) {
+        return this.res.status(404).json({ message: 'Motorcycle not found' });
+      }
+      return this.res.status(200).json(motoUpdate);
+    } catch (err) {
+      this.next(err);
+    }
+  }
 }

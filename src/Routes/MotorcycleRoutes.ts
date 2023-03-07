@@ -11,5 +11,10 @@ motoRoutes.get(
   idValidate, 
   async (req, res, next) => new MotorcycleController(req, res, next).getById(),
 );
+motoRoutes.put(
+  '/:id', 
+  idValidate,
+  async (req, res, next) => new MotorcycleController(req, res, next).update(),
+);
 
 export default motoRoutes;
