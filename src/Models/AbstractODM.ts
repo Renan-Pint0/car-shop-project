@@ -15,11 +15,11 @@ export default class AbstractODM<T> {
     return this.model.create({ ...details });
   }
 
-  public async findCars(): Promise<T[]> {
+  public async findAll(): Promise<T[]> {
     return this.model.find();
   }
 
-  public async findCarById(id: string): Promise<T | null> {
+  public async findById(id: string): Promise<T | null> {
     return this.model.findById(id);
   }
 

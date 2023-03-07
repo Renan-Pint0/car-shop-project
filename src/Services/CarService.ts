@@ -17,21 +17,21 @@ class CarService {
 
   public async ListCars() {
     const carODM = new CarODM();
-    const allCars = await carODM.findCars();
+    const allCars = await carODM.findAll();
     const cars = allCars.map((car) => this.createDomain(car));
     return cars;
   }
 
   public async ListCarsByid(id: string) {
     const carODM = new CarODM();
-    const car = await carODM.findCarById(id);
+    const car = await carODM.findById(id);
     return this.createDomain(car);
   }
 
   public async update(id: string, details:ICar) {
     const carODM = new CarODM();
     const carUpdate = await carODM.findByIdAndUpdate(id, details);
-    const newCar = await carODM.findCarById(id);
+    const newCar = await carODM.findById(id);
     if (newCar !== null) return this.createDomain(newCar);
     if (!carUpdate) throw new Error('Car not found');
   }

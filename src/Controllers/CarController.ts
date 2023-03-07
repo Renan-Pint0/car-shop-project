@@ -68,9 +68,12 @@ class CarController {
         seatsQty: this.req.body.seatsQty,
       };
       const carUpdate = await this.service.update(id, carInfos);
+      if (!carUpdate) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
       return this.res.status(200).json(carUpdate);
     } catch (err) {
-      return this.res.status(404).json({ message: 'Car not found' });
+      this.next(err);
     }
   }
 }
